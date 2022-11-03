@@ -13,7 +13,7 @@ module.exports = {
         "7xl": "10rem",
       },
       gridTemplateColumns: {
-        Movies: "200px 1fr",
+        Movies: "350px 1fr",
       },
       width: {
         95: "95%",

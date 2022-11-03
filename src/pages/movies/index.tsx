@@ -17,16 +17,29 @@ export default function Movies({
   const imageUrl = "https://image.tmdb.org/t/p/w220_and_h330_face";
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState<data>(data);
+  let selected: string[] = [];
   const router = useRouter();
+
+  const handleClick = (name: string) => {
+    if (selected.includes(name)) {
+      selected = selected.filter((item) => item !== name);
+    } else if (!selected.includes(name)) {
+      selected.push(name);
+    }
+    console.log(selected);
+  };
+
   return (
     <>
       <Head>
         <title>The Movie DB | Movies</title>
         <meta name="description" content="watch latest movies in the 2022 !" />
       </Head>
-      <div className=" bg-purple-100">
-        <div className="container mx-auto w-95 text-md grid lg:grid-cols-Movies gap-3 pt-2">
-          <div className="bg-purple-200 p-2 rounded-md box-border">
+      <div className=" bg-purple-200">
+        <div className="text-md grid lg:grid-cols-Movies">
+          {/* start Of sidebar  */}
+
+          <div className="bg-purple-300 p-4 rounded-lg box-border">
             <p className="text-left font-extralight text-3xl ">Filters : </p>
 
             <input
@@ -43,11 +56,64 @@ export default function Movies({
                 }
               }}
               type="text"
-              placeholder="Search"
-              className="rounded-base mt-2 py-1 px-1 w-full  border-2 focus:border-purple-400"
+              placeholder="Search between all movies "
+              className="rounded-base mt-2 py-1 px-1 w-full  border-2 border-purple-400"
             />
+            <p className="my-3 text-3xl">Genres :</p>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                onClick={() => handleClick("Action")}
+                style={{
+                  borderColor: selected.includes("Action" as string)
+                    ? "red"
+                    : "green",
+                }}
+                className={`py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white`}
+              >
+                Action
+              </button>
+              <button
+                onClick={() => handleClick("Comedy")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                Comedy
+              </button>
+              <button
+                onClick={() => handleClick("Animation")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                Animation
+              </button>
+              <button
+                onClick={() => handleClick("Drama")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                Drama
+              </button>
+              <button
+                onClick={() => handleClick("History")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                History
+              </button>
+              <button
+                onClick={() => handleClick("TV Movie")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                TV Movie
+              </button>
+              <button
+                onClick={() => handleClick("War")}
+                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
+              >
+                War
+              </button>
+            </div>
           </div>
-          <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 justify-items-center auto-rows-fr gap-2 ">
+
+          {/* End of Side Bar  */}
+
+          <div className="container mx-auto w-95 grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 justify-items-center auto-rows-fr gap-2 pt-4 ">
             {movies.results.map((movie) => {
               // movie.genre_ids.forEach((id) => setGenres());
               return (
