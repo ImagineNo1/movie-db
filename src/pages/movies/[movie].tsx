@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { movie } from "../../types/types";
+import Head from "next/head";
 
 const MovieDetails = ({
   movie,
@@ -8,6 +9,10 @@ const MovieDetails = ({
 
   return (
     <>
+      <Head>
+        <title>{movie.original_title} | Details</title>
+        <meta name="description" content={`Overview : ${movie.overview}`} />
+      </Head>
       {movie && (
         <div className="flex justify-center items-center h-screen">
           <div className="w-7/12 mx-auto border border-blue-300 px-5 py-5 rounded">
@@ -35,7 +40,7 @@ export const getStaticProps: GetStaticProps<{ movie: movie }> = async (
 ) => {
   const { params } = context;
   const result = await fetch(
-    `https://api.themoviedb.org/3/movie/${params?.movie}?api_key=7fa164084e58e9cab61ed06d4f2037b8&language=en-US`
+    `https://api.themoviedb.org/3/movie/${params?.movie}?api_key=${process.env.API_KEY}&language=en-US`
   );
   const movie: movie = await result.json();
   return {

@@ -1,8 +1,10 @@
 export type movie = {
   id: number;
   poster_path: string;
+  popularity: number;
   genre_ids: [];
   original_title: string;
+  overview: string;
 };
 
 type duration = {

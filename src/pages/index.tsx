@@ -5,6 +5,7 @@ const Home = () => {
     <>
       <Head>
         <title>Feel The Code | Home</title>
+        <meta name="description" content="Feel The Code Movie DB" />
       </Head>
 
       <div className=" bg-gray-100">
