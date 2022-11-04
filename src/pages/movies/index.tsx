@@ -1,6 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { data } from "../../types/types";
 import { genres } from "../../components/genres";
@@ -16,6 +15,8 @@ export default function Movies({
   const [ratingval, setRatingval] = useState<number | string>(5);
   const [activefilters, seActivefilters] = useState<string[]>([]);
   const router = useRouter();
+
+  // This Function Used For Search Button in side bar
 
   const handleSearch = async () => {
     let genresStr = "";
@@ -45,6 +46,9 @@ export default function Movies({
         genresStr?.length > 1 ? genresStr : ""
       }${ratingStr?.length > 1 ? ratingStr : ""}`
     );
+    if (!response.ok) {
+      return;
+    }
     const data: data = await response.json();
     setMovies(data);
 
@@ -59,6 +63,8 @@ export default function Movies({
     );
   };
 
+  // this Function used to consider which filters should apply for searching
+
   const ActiveFilters = (name: string) => {
     if (activefilters.includes(name)) {
       seActivefilters(activefilters.filter((item) => item !== name));
@@ -66,6 +72,8 @@ export default function Movies({
       seActivefilters([...activefilters, name]);
     }
   };
+
+  // this function just toggles the active and inactive Genres for searching
 
   const handleClick = (name: string) => {
     if (name == "Delete") {
@@ -119,8 +127,8 @@ export default function Movies({
               {selected.length >= 1 && (
                 <span className="text-base">
                   Selected Genres :{" "}
-                  {selected.map((genre) => (
-                    <span> {genre} , </span>
+                  {selected.map((genre, index) => (
+                    <span key={index}> {genre} , </span>
                   ))}
                 </span>
               )}

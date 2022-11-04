@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        "84vh": "84vh",
+      },
       fontFamily: {
         style: "Kolker Brush",
       },
