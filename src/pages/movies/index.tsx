@@ -1,10 +1,6 @@
-import {
-  GetServerSideProps,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-  InferGetStaticPropsType,
-} from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { data } from "../../types/types";
 import { genres } from "../../components/genres";
@@ -22,10 +18,10 @@ export default function Movies({
   const router = useRouter();
 
   const handleSearch = async () => {
-    let genresStr;
-    let ratingStr;
-    let routergenre;
-    let routerRating;
+    let genresStr = "";
+    let ratingStr = "";
+    let routergenre = "";
+    let routerRating = "";
 
     if (activefilters.includes("Genres")) {
       let genresCode: number[] = [];
@@ -291,7 +287,6 @@ export default function Movies({
               // movie.genre_ids.forEach((id) => setGenres());
               return (
                 <div key={movie.id}>
-                  c
                   <Link href={`/movies/${movie.id}`}>
                     <div className="text-white bg-gray-600 text-lg rounded inline-block hover:shadow-lg hover:opacity-80">
                       <img
