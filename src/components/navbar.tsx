@@ -7,7 +7,7 @@ const Navbar = () => {
         <div>
           <Link
             href="/"
-            className="md:text-6xl sm:text-5xl text-2xl font-style"
+            className="md:text-6xl sm:text-5xl text-4xl font-style"
           >
             The Movie Database
           </Link>

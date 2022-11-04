@@ -68,32 +68,6 @@ export default function Movies({
   };
 
   const handleClick = (name: string) => {
-    if (name == "Search") {
-      let genresCode: number[] = [];
-      selected.map((genre) => {
-        genres.map((item) => {
-          if (item.name == genre) {
-            genresCode.push(item.id);
-          }
-        });
-      });
-
-      const searchByGenres = async () => {
-        const result = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?api_key=7fa164084e58e9cab61ed06d4f2037b8&with_genres=${genresCode.map(
-            (code) => code
-          )}`
-        );
-        if (result.ok) {
-          const res: data = await result.json();
-          setMovies(res);
-          // router.push(`/movies?search=${e.target.value}`, undefined, {
-          //   shallow: true,
-          // });
-        }
-      };
-      searchByGenres();
-    }
     if (name == "Delete") {
       setSelected([]);
       return;
@@ -112,6 +86,8 @@ export default function Movies({
       <Head>
         <title>The Movie DB | Movies</title>
         <meta name="description" content="watch latest movies in the 2022 !" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className=" bg-purple-200">
         <div className="text-md grid lg:grid-cols-Movies">
