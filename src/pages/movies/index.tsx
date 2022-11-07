@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { data } from "../../types/types";
+import { data, MultipleChilds } from "../../types/types";
 import { genres } from "../../components/genres";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -101,7 +101,7 @@ export default function Movies({
         <div className="text-md grid lg:grid-cols-Movies">
           {/* start Of sidebar  */}
 
-          <div className="bg-purple-300 p-4 rounded-lg box-border">
+          <div className="bg-purple-300 p-4 rounded-lg box-border mt-4">
             <p className="text-left font-extralight text-3xl ">Filters : </p>
 
             <input
@@ -133,91 +133,37 @@ export default function Movies({
                 </span>
               )}
             </p>
-            <div className="grid grid-cols-3 gap-2">
-              <button
-                onClick={() => handleClick("Action")}
-                style={{
-                  borderColor: selected.includes("Action" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className={`py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white`}
-              >
-                Action
-              </button>
-              <button
-                onClick={() => handleClick("Comedy")}
-                style={{
-                  borderColor: selected.includes("Comedy" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                Comedy
-              </button>
-              <button
-                onClick={() => handleClick("Animation")}
-                style={{
-                  borderColor: selected.includes("Animation" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                Animation
-              </button>
-              <button
-                onClick={() => handleClick("Drama")}
-                style={{
-                  borderColor: selected.includes("Drama" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                Drama
-              </button>
-              <button
-                onClick={() => handleClick("History")}
-                style={{
-                  borderColor: selected.includes("History" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                History
-              </button>
-              <button
-                onClick={() => handleClick("TV Movie")}
-                style={{
-                  borderColor: selected.includes("TV Movie" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                TV Movie
-              </button>
-              <button
-                onClick={() => handleClick("War")}
-                style={{
-                  borderColor: selected.includes("War" as string)
-                    ? "green"
-                    : "blue",
-                }}
-                className="py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white"
-              >
-                War
-              </button>
-              <button
-                onClick={() => handleClick("Delete")}
-                className="py-1 px-2 rounded-md border-2 border-red-500 hover:bg-red-400 hover:text-white"
-              >
-                delete
-              </button>
-            </div>
+
+            <MultipleChilds>
+              <>
+                <div className="grid grid-cols-3 gap-3">
+                  {genres.map((genre) => {
+                    return (
+                      <button
+                        onClick={() => handleClick(`${genre.name}`)}
+                        style={{
+                          borderColor: selected.includes(`${genre.name}`)
+                            ? "green"
+                            : "blue",
+                        }}
+                        className={`py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white ${
+                          genre.name.length > 8 ? " text-sm" : "text-lg"
+                        }`}
+                      >
+                        {genre.name}
+                      </button>
+                    );
+                  })}
+                  <button
+                    onClick={() => handleClick("Delete")}
+                    className="py-1 px-2 rounded-md border-2 border-red-500 hover:bg-red-400 hover:text-white"
+                  >
+                    delete
+                  </button>
+                </div>
+              </>
+            </MultipleChilds>
+
             <p className="my-3 text-3xl">Rating :</p>
             <input
               type="range"

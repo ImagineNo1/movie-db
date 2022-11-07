@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="text-lg">
           <Link
             href="/login"
-            className="mr-4 hover:border-3 hover:border-green-900 hover:pt-1 hover:px-1 hover:rounded"
+            className="mr-4 hover:border-b-2 hover:border-red-500  hover:text-red-600"
           >
             Login
           </Link>

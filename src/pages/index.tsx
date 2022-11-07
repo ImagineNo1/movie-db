@@ -8,7 +8,7 @@ const Home = () => {
         <meta name="description" content="Feel The Code Movie DB" />
       </Head>
 
-      <div className=" bg-gray-100">
+      <div className=" bg-purple-200">
         <div className="container mx-auto w-11/12 text-md">
           <div className="h-screen flex justify-center items-center ">
             <div>

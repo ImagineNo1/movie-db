@@ -19,3 +19,11 @@ export type data = {
   total_pages: number;
   total_results: number;
 };
+
+type MultipleProps = {
+  children?: JSX.Element | JSX.Element[];
+};
+
+export const MultipleChilds = ({ children }: MultipleProps) => {
+  return <div>{children}</div>;
+};
