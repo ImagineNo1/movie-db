@@ -140,6 +140,7 @@ export default function Movies({
                   {genres.map((genre) => {
                     return (
                       <button
+                        key={genre.id}
                         onClick={() => handleClick(`${genre.name}`)}
                         style={{
                           borderColor: selected.includes(`${genre.name}`)
