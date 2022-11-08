@@ -139,21 +139,20 @@ export default function Movies({
                 <div className="grid grid-cols-3 gap-3">
                   {genres.map((genre) => {
                     return (
-                      <div key={genre.id}>
-                        <button
-                          onClick={() => handleClick(`${genre.name}`)}
-                          style={{
-                            borderColor: selected.includes(`${genre.name}`)
-                              ? "green"
-                              : "blue",
-                          }}
-                          className={`py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white ${
-                            genre.name.length > 8 ? " text-sm" : "text-lg"
-                          }`}
-                        >
-                          {genre.name}
-                        </button>
-                      </div>
+                      <button
+                        key={genre.id}
+                        onClick={() => handleClick(`${genre.name}`)}
+                        style={{
+                          borderColor: selected.includes(`${genre.name}`)
+                            ? "green"
+                            : "blue",
+                        }}
+                        className={`py-1 px-2 rounded-md border-2 border-blue-500 hover:bg-blue-400 hover:text-white ${
+                          genre.name.length > 8 ? " text-sm" : "text-lg"
+                        }`}
+                      >
+                        {genre.name}
+                      </button>
                     );
                   })}
                   <button
