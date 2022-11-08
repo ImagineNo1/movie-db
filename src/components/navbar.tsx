@@ -14,16 +14,10 @@ const Navbar = () => {
         </div>
         <div className="text-lg">
           <Link
-            href="/login"
+            href="/about"
             className="mr-4 hover:border-b-2 hover:border-red-500  hover:text-red-600"
           >
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            className="mr-4 hover:border-b-2 hover:border-red-500  hover:text-red-600"
-          >
-            Signup
+            About
           </Link>
           <Link
             href="/movies"
